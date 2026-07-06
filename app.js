@@ -27,6 +27,18 @@ app.get('/laptops/:id', (req, res) => {
 app.get('/laptops', (req, res) => {
   res.send(laptop);
 }); 
+// Actualizar una laptop por ID
+app.put('/laptops/:id', (req, res) => {
+    const id = req.params.id; // Obtener el ID del contacto a actualizar desde los parámetros de la ruta
+    console.log(`Actualizando laptop con ID: ${id}`);
+    const laptopIndex = laptop.findIndex(l => l.id == id);
+    if (laptopIndex !== -1) {
+        laptop[laptopIndex] = { ...laptop[laptopIndex], ...req.body };
+        res.send(laptop[laptopIndex]);
+    } else {
+        res.status(404).send('Laptop no encontrada');
+    }
+});
 
 app.listen(port, () => {
   console.log(`Servidor funcionando en http://localhost:${port}`);
