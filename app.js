@@ -39,6 +39,18 @@ app.put('/laptops/:id', (req, res) => {
         res.status(404).send('Laptop no encontrada');
     }
 });
+// Eliminar una laptop por ID
+app.delete('/laptops/:id', (req, res) => {
+    const id = req.params.id; // Obtener el ID del contacto a eliminar desde los parámetros de la ruta
+    console.log(`Eliminando laptop con ID: ${id}`);
+    const laptopIndex = laptop.findIndex(l => l.id == id);
+    if (laptopIndex !== -1) {
+        laptop.splice(laptopIndex, 1); // Eliminar la laptop del arreglo
+        res.send('¡Elemento eliminado!');
+    } else {
+        res.status(404).send('Laptop no encontrada');
+    }
+});
 
 app.listen(port, () => {
   console.log(`Servidor funcionando en http://localhost:${port}`);
