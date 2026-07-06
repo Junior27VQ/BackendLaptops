@@ -7,6 +7,7 @@ app.use(express.json());
 
 //Crear una laptop
 app.post('/laptops', (req, res) => {
+    console.log('body:', req.body); // Mostrar el cuerpo de la solicitud en la consola
     req.body.id = laptop.length + 1;
     const nuevaLaptop = req.body; 
     laptop.push(nuevaLaptop); 
