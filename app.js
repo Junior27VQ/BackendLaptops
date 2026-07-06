@@ -23,6 +23,10 @@ app.get('/laptops/:id', (req, res) => {
         res.status(404).send('Laptop no encontrada'); //Enviamos un mensaje de error si no se encuentra la laptop
     }
 });
+// Recuperar todas las laptops
+app.get('/laptops', (req, res) => {
+  res.send(laptop);
+}); 
 
 app.listen(port, () => {
   console.log(`Servidor funcionando en http://localhost:${port}`);
